@@ -1,0 +1,26 @@
+[project]
+name = "em-dash-analyzer"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Romain Florentz", email = "romain@florentz-consulting.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "pandas (>=2.2.3,<3.0.0)",
+    "tqdm (>=4.67.1,<5.0.0)",
+    "praw (>=7.8.1,<8.0.0)",
+    "matplotlib (>=3.10.1,<4.0.0)",
+    "python-dotenv (>=1.1.0,<2.0.0)",
+    "fire (>=0.7.0,<0.8.0)",
+    "scipy (>=1.15.2,<2.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+package-mode = false
