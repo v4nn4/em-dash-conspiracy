@@ -3,7 +3,9 @@ from pathlib import Path
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.dates import DateFormatter
+from matplotlib.ticker import PercentFormatter
 
+# https://iamkate.com/data/12-bit-rainbow/
 PALETTE = [
     "#817",
     "#a35",
@@ -60,10 +62,26 @@ def plot_em_dash_usage(
                 lw=2.5,
             )
 
-        ax.set_title("The Em Dash Conspiracy", fontsize=16)
-        ax.set_ylabel("Share of Posts Using Em Dash")
+        ax.set_title("The Em Dash (—) Conspiracy", fontsize=16)
+        ax.set_ylabel("% of Posts Using Em Dash (—)", fontsize=14)
         ax.set_xlabel("Month")
-        ax.xaxis.set_major_formatter(DateFormatter("%b %y"))  # <- Add this line
+        ax.set_ylim(0, 20)
+        ax.set_yticks([0, 5, 10, 15, 20])
+        ax.yaxis.set_major_formatter(PercentFormatter(xmax=100, decimals=0))
+        ax.xaxis.set_major_formatter(DateFormatter("%b %y"))
         ax.legend(title="Subreddit", fontsize=12)
+        ax.text(
+            0.99,
+            0.02,
+            "Source: Reddit API — Data as of 4 May 2025",
+            transform=ax.transAxes,
+            ha="right",
+            va="bottom",
+            fontsize=9,
+            color="gray",
+        )
+
+        plt.subplots_adjust(bottom=0.2)
+
         plt.tight_layout()
         plt.savefig(outfile, dpi=300)
